@@ -105,7 +105,7 @@ export default function question(pi: ExtensionAPI) {
 
       if (ctx.mode !== "tui") return fail("Error: cannot ask questions in non-interactive mode");
       if (questions.length === 0) return fail("Error: no questions provided");
-      if (signal.aborted) return fail("User rejected the questions");
+      if (signal?.aborted) return fail("User rejected the questions");
 
       const result = await ctx.ui.custom<Details>((tui, theme, _kb, done) => {
         const submitTab = questions.length; // only reachable when there are 2+ questions
@@ -147,7 +147,7 @@ export default function question(pi: ExtensionAPI) {
 
         // The turn can be aborted while the dialog is open (Esc on the spinner).
         const onAbort = () => finish(true);
-        signal.addEventListener("abort", onAbort, { once: true });
+        signal?.addEventListener("abort", onAbort, { once: true });
 
         editor.onSubmit = (value) => {
           editor.setText("");
@@ -275,7 +275,7 @@ export default function question(pi: ExtensionAPI) {
             cachedLines = undefined;
           },
           handleInput,
-          dispose: () => signal.removeEventListener("abort", onAbort),
+          dispose: () => signal?.removeEventListener("abort", onAbort),
         };
       });
 

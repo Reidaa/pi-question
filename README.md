@@ -37,10 +37,11 @@ opencode: `User has answered your questions: "Which runtime?"="Bun". ...`
 ## Develop
 
 ```bash
-npm run fmt     # oxfmt
-npm run lint    # oxlint
-npm test        # vitest
-npm run check   # all three, format verified not rewritten
+npm run fmt        # oxfmt
+npm run lint       # oxlint
+npm run typecheck  # tsc --noEmit
+npm test           # vitest
+npm run check      # all four, format verified not rewritten
 ```
 
 `extensions/question.ts` only maps keys to actions and draws state. Every
