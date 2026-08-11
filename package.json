@@ -1,0 +1,26 @@
+{
+  "name": "pi-question",
+  "version": "0.1.0",
+  "description": "Ask the user questions mid-run, opencode's v2 question tool ported to pi",
+  "keywords": [
+    "pi-package"
+  ],
+  "type": "module",
+  "scripts": {
+    "fmt": "oxfmt .",
+    "lint": "oxlint",
+    "check": "oxfmt --check . && oxlint && npm test",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "oxfmt": "^0.63.0",
+    "oxlint": "^1.78.0",
+    "vitest": "^4.1.10"
+  },
+  "pi": {
+    "extensions": [
+      "./extensions/question.ts"
+    ]
+  }
+}
