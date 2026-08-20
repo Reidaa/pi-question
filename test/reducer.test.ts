@@ -88,9 +88,14 @@ test("confirming a multi-select question keeps what was already toggled", () => 
   expect(state.answers[1]).toEqual(["Types"]);
 });
 
-test("space does nothing on single-choice questions or on the custom row", () => {
+test("space does nothing on single-choice questions", () => {
   expect(play(single, ["toggle"]).state.answers).toEqual([[]]);
-  expect(play(multi, ["nextTab", "down", "down", "toggle"]).state.answers[1]).toEqual([]);
+});
+
+test("space opens the custom-answer editor on a multi-select question", () => {
+  const { state, effect } = play(multi, ["nextTab", "down", "down", "toggle"]);
+  expect(effect).toBe("openEditor");
+  expect(state.editing).toBe(true);
 });
 
 test("the custom row opens the editor instead of answering", () => {

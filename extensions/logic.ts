@@ -152,7 +152,8 @@ export function reduce(questions: readonly Question[], state: State, action: Act
   const option = options[state.optionIndex];
 
   if (action === "toggle") {
-    if (!q.multiple || option.isCustom) return { state };
+    if (option.isCustom) return { state: { ...state, editing: true }, effect: "openEditor" };
+    if (!q.multiple) return { state };
     return applyPick(questions, state, option.label);
   }
 
